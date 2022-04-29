@@ -19,8 +19,8 @@ public class PersonServices {
     private final UserCSV userCSVService = UserCSV.getInstance();
 
     private final String mailRegex = "^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$";
-    private final String USER_CSV_PATH = "./src/main/resources/csv/users.csv";
-    private final String COURIERS_CSV_PATH = "./src/main/resources/csv/couriers.csv";
+    private final String USER_CSV_PATH = "./csv/users.csv";
+    private final String COURIERS_CSV_PATH = "./csv/couriers.csv";
 
     public PersonServices() {
         try {

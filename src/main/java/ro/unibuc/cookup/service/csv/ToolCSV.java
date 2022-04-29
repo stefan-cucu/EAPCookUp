@@ -38,7 +38,7 @@ public class ToolCSV implements GenericCSV<Tool> {
         catch (Exception e) {
             e.printStackTrace();
         }
-        audit("./src/main/resources/csv/audit.csv", "load_tools");
+        audit("./csv/audit.csv", "load_tools");
         return tools;
     }
 
@@ -60,6 +60,6 @@ public class ToolCSV implements GenericCSV<Tool> {
         catch (Exception e) {
             e.printStackTrace();
         }
-        audit("./src/main/resources/csv/audit.csv", "add_tool");
+        audit("./csv/audit.csv", "add_tool");
     }
 }

@@ -20,8 +20,8 @@ public class ProductServices {
     private IngredientCSV ingredientCSVService = IngredientCSV.getInstance();
     private ToolCSV toolCSVService = ToolCSV.getInstance();
 
-    private final String INGREDIENT_CSV_PATH = "./src/main/resources/csv/ingredients.csv";
-    private final String TOOL_CSV_PATH = "./src/main/resources/csv/tools.csv";
+    private final String INGREDIENT_CSV_PATH = "./csv/ingredients.csv";
+    private final String TOOL_CSV_PATH = "./csv/tools.csv";
 
     public ProductServices() {
         try {

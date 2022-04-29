@@ -33,7 +33,7 @@ public class CourierCSV implements GenericCSV<Courier> {
         catch (Exception e) {
             e.printStackTrace();
         }
-        audit("./src/main/resources/csv/audit.csv", "load_couriers");
+        audit("./csv/audit.csv", "load_couriers");
         return couriers;
     }
 
@@ -55,7 +55,7 @@ public class CourierCSV implements GenericCSV<Courier> {
         catch (IOException e) {
             e.printStackTrace();
         }
-        audit("./src/main/resources/csv/audit.csv", "add_courier");
+        audit("./csv/audit.csv", "add_courier");
     }
 
     public static CourierCSV getInstance() {

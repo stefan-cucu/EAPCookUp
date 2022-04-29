@@ -39,7 +39,7 @@ public class IngredientCSV implements GenericCSV<Ingredient> {
         catch (Exception e) {
             e.printStackTrace();
         }
-        audit("./src/main/resources/csv//audit.csv", "load_ingredients");
+        audit("./csv/audit.csv", "load_ingredients");
         return ingredients;
     }
 
@@ -61,6 +61,6 @@ public class IngredientCSV implements GenericCSV<Ingredient> {
         catch (Exception e) {
             e.printStackTrace();
         }
-        audit("./src/main/resources/csv/audit.csv", "add_ingredient");
+        audit("./csv/audit.csv", "add_ingredient");
     }
 }

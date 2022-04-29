@@ -30,7 +30,7 @@ public class UserCSV implements GenericCSV<User> {
         catch (Exception e) {
             e.printStackTrace();
         }
-        audit("./src/main/resources/csv/audit.csv", "load_users");
+        audit("./csv/audit.csv", "load_users");
         return users;
     }
 
@@ -52,7 +52,7 @@ public class UserCSV implements GenericCSV<User> {
         catch (Exception e) {
             e.printStackTrace();
         }
-        audit("./src/main/resources/csv/audit.csv", "add_user");
+        audit("./csv/audit.csv", "add_user");
     }
 
     public static UserCSV getInstance() {
