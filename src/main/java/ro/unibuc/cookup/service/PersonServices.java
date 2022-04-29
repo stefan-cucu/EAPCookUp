@@ -5,6 +5,8 @@ import ro.unibuc.cookup.domain.persons.PaymentCard;
 import ro.unibuc.cookup.domain.persons.User;
 import ro.unibuc.cookup.persistence.CourierRepository;
 import ro.unibuc.cookup.persistence.UserRepository;
+import ro.unibuc.cookup.service.csv.CourierCSV;
+import ro.unibuc.cookup.service.csv.UserCSV;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -13,7 +15,32 @@ public class PersonServices {
     private final UserRepository userRepository = new UserRepository();
     private final CourierRepository courierRepository = new CourierRepository();
 
+    private final CourierCSV courierCSV = CourierCSV.getInstance();
+    private final UserCSV userCSVService = UserCSV.getInstance();
+
     private final String mailRegex = "^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$";
+    private final String USER_CSV_PATH = "./src/main/resources/csv/users.csv";
+    private final String COURIERS_CSV_PATH = "./src/main/resources/csv/couriers.csv";
+
+    public PersonServices() {
+        try {
+            for(User user : userCSVService.load(USER_CSV_PATH)) {
+                userRepository.add(user);
+            }
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+
+        try {
+            for(Courier courier : courierCSV.load(COURIERS_CSV_PATH)) {
+                courierRepository.add(courier);
+            }
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+    }
 
     public void createUser(String firstName, String lastName, String email, String phone, String address, String password) {
         if(firstName == null || lastName == null || email == null || phone == null || address == null || password == null) {
@@ -27,23 +54,29 @@ public class PersonServices {
         }
         User user = new User(firstName, lastName, email, phone, address, password);
         userRepository.add(user);
+        userCSVService.add(USER_CSV_PATH, user);
     }
 
     public void createCourier(String firstName, String lastName, String email, String phone, String address, float salary, String nationality, Date employmentDate) {
         if(firstName == null || lastName == null || email == null || phone == null || address == null || nationality == null || employmentDate == null ) {
             throw new IllegalArgumentException("All fields must be filled");
         }
+
         if(firstName.trim().isEmpty() || lastName.trim().isEmpty() || email.trim().isEmpty() || phone.trim().isEmpty() || address.trim().isEmpty() || nationality.trim().isEmpty()) {
             throw new IllegalArgumentException("All fields must be filled");
         }
+
         if (!email.matches(mailRegex)) {
             throw new IllegalArgumentException("Invalid email");
         }
+
         if(salary <= 0){
             throw new IllegalArgumentException("Salary must be positive");
         }
+
         Courier courier = new Courier(firstName, lastName, email, phone, address, salary, nationality, employmentDate);
         courierRepository.add(courier);
+        courierCSV.add(COURIERS_CSV_PATH, courier);
     }
 
     public void addCardToUser(int id, String number, String name, String expiryDate, String cvv){

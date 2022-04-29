@@ -1,5 +1,6 @@
 package ro.unibuc.cookup.domain.persons;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -56,5 +57,18 @@ public class Courier extends Person{
     public void setStatus(CourierStatus status) {
         this.status = status;
     }
-   }
+
+    @Override
+    public String toString() {
+        return String.format("%s,%s,%s,%s,%s,%s,%s,%s\n",
+                getFirstName(),
+                getLastName(),
+                getEmail(),
+                getPhone(),
+                getAddress(),
+                getSalary(),
+                getNationality(),
+                new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(getEmploymentDate()));
+    }
+}
 

@@ -6,8 +6,9 @@ import ro.unibuc.cookup.domain.products.Recipe;
 import ro.unibuc.cookup.domain.products.Tool;
 import ro.unibuc.cookup.persistence.ProductRepository;
 import ro.unibuc.cookup.persistence.RecipeRepository;
+import ro.unibuc.cookup.service.csv.IngredientCSV;
+import ro.unibuc.cookup.service.csv.ToolCSV;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -15,6 +16,32 @@ import java.util.HashMap;
 public class ProductServices {
     private ProductRepository productRepository = new ProductRepository();
     private RecipeRepository recipeRepository = new RecipeRepository();
+
+    private IngredientCSV ingredientCSVService = IngredientCSV.getInstance();
+    private ToolCSV toolCSVService = ToolCSV.getInstance();
+
+    private final String INGREDIENT_CSV_PATH = "./src/main/resources/csv/ingredients.csv";
+    private final String TOOL_CSV_PATH = "./src/main/resources/csv/tools.csv";
+
+    public ProductServices() {
+        try {
+            for(Ingredient ingredient : ingredientCSVService.load(INGREDIENT_CSV_PATH)){
+                productRepository.add(ingredient);
+            }
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+
+        try {
+            for(Tool tool : toolCSVService.load(TOOL_CSV_PATH)){
+                productRepository.add(tool);
+            }
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+    }
 
     public void addIngredient(String name, String description, float price, Date manufacturingDate, String brand, String storageType, Date expirationDate, String countryOfOrigin){
         if(name == null || name.isEmpty()){
@@ -41,7 +68,9 @@ public class ProductServices {
         if(countryOfOrigin == null || countryOfOrigin.isEmpty()){
             throw new IllegalArgumentException("Country of origin cannot be empty");
         }
-        productRepository.add(new Ingredient(name, description, price, manufacturingDate, brand, storageType, expirationDate, countryOfOrigin));
+        Ingredient ingredient = new Ingredient(name, description, price, manufacturingDate, brand, storageType, expirationDate, countryOfOrigin);
+        productRepository.add(ingredient);
+        ingredientCSVService.add(INGREDIENT_CSV_PATH, ingredient);
     }
 
     public void addTool(String name, String description, float price, Date manufacturingDate, String brand, String material, String category, float profitRate) {
@@ -69,7 +98,9 @@ public class ProductServices {
         if(profitRate <= 0 || profitRate > 1){
             throw new IllegalArgumentException("Profit rate must be between 0 and 1");
         }
-        productRepository.add(new Tool(name, description, price, manufacturingDate, brand, material, category, profitRate));
+        Tool tool = new Tool(name, description, price, manufacturingDate, brand, material, category, profitRate);
+        productRepository.add(tool);
+        toolCSVService.add(TOOL_CSV_PATH, tool);
     }
 
     public void addRecipe(HashMap<Ingredient, Integer> ingredients, String name, String description, float timeEstimate, float profitRate){

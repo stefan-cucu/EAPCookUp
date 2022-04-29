@@ -5,7 +5,7 @@ import ro.unibuc.cookup.domain.persons.Courier;
 import java.util.ArrayList;
 
 public class CourierRepository implements GenericRepository<Courier> {
-    private ArrayList<Courier> storage = new ArrayList<Courier>();
+    private static ArrayList<Courier> storage = new ArrayList<Courier>();
 
     @Override
     public void add(Courier entity) {

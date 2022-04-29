@@ -7,7 +7,7 @@ import ro.unibuc.cookup.domain.products.Recipe;
 import java.util.ArrayList;
 
 public class RecipeRepository implements GenericRepository<Recipe> {
-    private ArrayList<Recipe> storage = new ArrayList<Recipe>();
+    private static ArrayList<Recipe> storage = new ArrayList<Recipe>();
 
     @Override
     public void add(Recipe entity) {

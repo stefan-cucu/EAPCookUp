@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class SupermarketRepository implements GenericRepository<Supermarket> {
-    private ArrayList<Supermarket> storage = new ArrayList<Supermarket>();
+    private static ArrayList<Supermarket> storage = new ArrayList<Supermarket>();
 
     @Override
     public void add(Supermarket entity) {

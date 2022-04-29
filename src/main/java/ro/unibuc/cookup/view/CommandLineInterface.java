@@ -27,7 +27,7 @@ public class CommandLineInterface {
 
     public static void main(String args[]) {
         CommandLineInterface cli = new CommandLineInterface();
-        cli.loadMockData();
+//        cli.loadMockData();
 
         System.out.println("\n" +
                 " _____                _     _   _         _ \n" +
@@ -612,16 +612,16 @@ public class CommandLineInterface {
         productServices.addIngredient("Mar", "Un mar", 10, new Date(), "Mere SRL", "FREEZER", new Date(), "Romania");
         productServices.addTool("Bol", "Un bol", 10, new Date(), "Boluri SRL", "Lemn", "Recipiente", 0.2f);
 
-        personServices.createUser("Laurentiu", "Pascal", "laurpascal@gmail.com", "+407294201", "Str Plopilor 20", "pass");
-        personServices.createCourier("Ion", "Ionescu", "ionionescu@gmail.com", "+407294202", "Str Plopilor 40", 3000, "Romana", new Date());
+//        personServices.createUser("Laurentiu", "Pascal", "laurpascal@gmail.com", "+407294201", "Str Plopilor 20", "pass");
+//        personServices.createCourier("Ion", "Ionescu", "ionionescu@gmail.com", "+407294202", "Str Plopilor 40", 3000, "Romana", new Date());
 
-        HashMap<Ingredient, Integer> ingredients = new HashMap<>();
-        ingredients.put(productServices.getIngredient(1001), 1);
-        productServices.addRecipe(ingredients, "Placinta", "Placinta de mere", 15, 0.2f);
-
-        HashMap<Product, Integer> products = new HashMap<>();
-        products.put(productServices.getProduct(1001), 3);
-        products.put(productServices.getProduct(1002), 1);
-        deliveryServices.addSupermarket("Supermarket 1", "Str Plopilor 2", products);
+//        HashMap<Ingredient, Integer> ingredients = new HashMap<>();
+//        ingredients.put(productServices.getIngredient(1001), 1);
+//        productServices.addRecipe(ingredients, "Placinta", "Placinta de mere", 15, 0.2f);
+//
+//        HashMap<Product, Integer> products = new HashMap<>();
+//        products.put(productServices.getProduct(1001), 3);
+//        products.put(productServices.getProduct(1002), 1);
+//        deliveryServices.addSupermarket("Supermarket 1", "Str Plopilor 2", products);
     }
 }

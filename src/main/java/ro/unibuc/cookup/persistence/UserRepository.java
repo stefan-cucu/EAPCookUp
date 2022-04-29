@@ -5,7 +5,7 @@ import ro.unibuc.cookup.domain.persons.User;
 import java.util.ArrayList;
 
 public class UserRepository implements GenericRepository<User> {
-    private ArrayList<User> storage = new ArrayList<User>();
+    private static ArrayList<User> storage = new ArrayList<User>();
     @Override
     public void add(User entity) {
         storage.add(entity);

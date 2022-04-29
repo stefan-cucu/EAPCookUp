@@ -7,7 +7,7 @@ import ro.unibuc.cookup.domain.products.Tool;
 import java.util.ArrayList;
 
 public class ProductRepository implements GenericRepository<Product> {
-    private ArrayList<Product> storage = new ArrayList<Product>();
+    private static ArrayList<Product> storage = new ArrayList<Product>();
 
     @Override
     public void add(Product entity) {

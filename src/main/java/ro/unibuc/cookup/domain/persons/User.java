@@ -12,12 +12,12 @@ public class User extends Person {
         this.paymentCard = paymentCard;
     }
 
-    // Getters and setters
     public User(String firstName, String lastName, String email, String phone, String address, String password) {
         super(firstName, lastName, email, phone, address);
         this.password = password;
     }
 
+    // Getters and setters
     public String getPassword() {
         return password;
     }
@@ -32,5 +32,12 @@ public class User extends Person {
 
     public void setPaymentCard(PaymentCard paymentCard) {
         this.paymentCard = paymentCard;
+    }
+
+    @Override
+    public String toString() {
+        // Write in CSV format
+        return String.format("%s,%s,%s,%s,%s,%s",
+                getFirstName(), getLastName(), getEmail(), getPhone(), getAddress(), password);
     }
 }

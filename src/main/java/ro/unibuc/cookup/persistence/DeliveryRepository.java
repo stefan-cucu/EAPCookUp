@@ -6,7 +6,7 @@ import ro.unibuc.cookup.domain.products.Product;
 import java.util.ArrayList;
 
 public class DeliveryRepository implements GenericRepository<Delivery> {
-    private ArrayList<Delivery> storage = new ArrayList<Delivery>();
+    private static ArrayList<Delivery> storage = new ArrayList<Delivery>();
     @Override
     public void add(Delivery entity) {
         storage.add(entity);

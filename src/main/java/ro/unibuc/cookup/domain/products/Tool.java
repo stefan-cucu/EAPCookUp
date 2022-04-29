@@ -1,5 +1,6 @@
 package ro.unibuc.cookup.domain.products;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -38,5 +39,19 @@ public class Tool extends Product implements Purchasable {
     @Override
     public float getProfit() {
         return getPrice() * profitRate;
+    }
+
+    @Override
+    public String toString() {
+        // Write to CSV format
+        return String.format("%s,%s,%s,%s,%s,%s,%s,%s",
+                getName(),
+                getDescription(),
+                getPrice(),
+                new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(getManufacturingDate()),
+                getBrand(),
+                getMaterial(),
+                getCategory(),
+                getProfit());
     }
 }

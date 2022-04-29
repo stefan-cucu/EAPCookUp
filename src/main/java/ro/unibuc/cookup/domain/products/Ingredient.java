@@ -1,5 +1,6 @@
 package ro.unibuc.cookup.domain.products;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Ingredient extends Product{
@@ -39,5 +40,12 @@ public class Ingredient extends Product{
 
     public void setCountryOfOrigin(String countryOfOrigin) {
         this.countryOfOrigin = countryOfOrigin;
+    }
+
+    @Override
+    public String toString() {
+        // Write to CSV format
+        return String.format("%s,%s,%s,%s,%s,%s,%s,%s",
+                getName(), getDescription(), getPrice(), new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(getManufacturingDate()), getBrand(), getStorageType(), new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(getExpirationDate()), getCountryOfOrigin());
     }
 }
