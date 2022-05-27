@@ -17,6 +17,17 @@ public class User extends Person {
         this.password = password;
     }
 
+    public User(int personId, String firstName, String lastName, String email, String phone, String address, String password) {
+        super(personId, firstName, lastName, email, phone, address);
+        this.password = password;
+    }
+
+    public User(int personId, String firstName, String lastName, String email, String phone, String address, String password, PaymentCard paymentCard) {
+        super(personId, firstName, lastName, email, phone, address);
+        this.password = password;
+        this.paymentCard = paymentCard;
+    }
+
     // Getters and setters
     public String getPassword() {
         return password;

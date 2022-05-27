@@ -10,7 +10,7 @@ import java.util.HashMap;
 
 public class Delivery {
     // Delivery enum
-    private enum DeliveryStatus {
+    public enum DeliveryStatus {
         IN_PROGRESS,
         DELIVERED,
         CANCELLED
@@ -26,16 +26,20 @@ public class Delivery {
     private Date date;
     private Supermarket supermarket;
     private HashMap<Product, Integer> products;
+    private float totalPrice, totalProfit;
     private DeliveryStatus deliveryStatus;
 
     // Constructor
-    public Delivery(User user, Courier courier, Date date, String deliveryStatus, HashMap<Product, Integer> products, Supermarket supermarket) {
+    public Delivery(User user, Courier courier, Date date, String deliveryStatus, HashMap<Product, Integer> products, Supermarket supermarket,
+                    float totalPrice, float totalProfit) {
         this.user = user;
         this.courier = courier;
         this.date = date;
         this.deliveryStatus = DeliveryStatus.valueOf(deliveryStatus);
         this.products = products;
         this.supermarket = supermarket;
+        this.totalPrice = totalPrice;
+        this.totalProfit = totalProfit;
         this.deliveryId = ++_id;
     }
 
@@ -86,5 +90,21 @@ public class Delivery {
 
     public void setProducts(HashMap<Product, Integer> products) {
         this.products = products;
+    }
+
+    public float getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(float totalPrice) {
+        this.totalPrice = totalPrice;
+    }
+
+    public float getTotalProfit() {
+        return totalProfit;
+    }
+
+    public void setTotalProfit(float totalProfit) {
+        this.totalProfit = totalProfit;
     }
 }

@@ -24,6 +24,18 @@ public abstract class Person {
         this.personId = ++_id;
     }
 
+    public Person(int personId, String firstName, String lastName, String email, String phone, String address) {
+        this.personId = personId;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.phone = phone;
+        this.address = address;
+
+        if(personId > _id)
+            _id = personId;
+    }
+
     // Getters and setters
     public int getPersonId() {
         return personId;

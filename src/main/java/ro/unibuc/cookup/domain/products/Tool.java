@@ -18,6 +18,13 @@ public class Tool extends Product implements Purchasable {
         this.profitRate = profitRate;
     }
 
+    public Tool(int productId, String name, String description, String brand, float price, Date manufacturingDate, String material, String category, float profitRate) {
+        super(productId, name, description, brand, price, manufacturingDate);
+        this.material = material;
+        this.category = category;
+        this.profitRate = profitRate;
+    }
+
     // Getters and setters
     public String getMaterial() {
         return material;
@@ -33,6 +40,14 @@ public class Tool extends Product implements Purchasable {
 
     public void setCategory(String category) {
         this.category = category;
+    }
+
+    public float getProfitRate() {
+        return profitRate;
+    }
+
+    public void setProfitRate(float profitRate) {
+        this.profitRate = profitRate;
     }
 
     // Purchasable methods

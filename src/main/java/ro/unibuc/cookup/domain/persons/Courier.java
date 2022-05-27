@@ -25,6 +25,14 @@ public class Courier extends Person{
         this.status = CourierStatus.AVAILABLE;
     }
 
+    public Courier(int personId, String firstName, String lastName, String email, String phone, String address, float salary, String nationality, Date employmentDate) {
+        super(personId, firstName, lastName, email, phone, address);
+        this.salary = salary;
+        this.nationality = nationality;
+        this.employmentDate = employmentDate;
+        this.status = CourierStatus.AVAILABLE;
+    }
+
     // Getters and setters
     public float getSalary() {
         return salary;

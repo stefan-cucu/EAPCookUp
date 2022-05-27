@@ -25,6 +25,18 @@ public abstract class Product implements Comparable<Product> {
         this.productId = ++_id;
     }
 
+    public Product(int productId, String name, String description, String brand, float price, Date manufacturingDate) {
+        this.productId = productId;
+        this.name = name;
+        this.description = description;
+        this.brand = brand;
+        this.price = price;
+        this.manufacturingDate = manufacturingDate;
+
+        if(productId > _id)
+            _id = productId;
+    }
+
     // Getters and setters
     public int getProductId() {
         return productId;

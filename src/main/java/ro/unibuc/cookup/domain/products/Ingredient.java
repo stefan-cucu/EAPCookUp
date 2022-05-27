@@ -11,8 +11,16 @@ public class Ingredient extends Product{
     private Date expirationDate;
     private String countryOfOrigin;
 
+    // Constructors
     public Ingredient(String name, String description, float price, Date manufacturingDate, String brand, String storageType, Date expirationDate, String countryOfOrigin) {
         super(name, description, price, manufacturingDate, brand);
+        this.storageType = StorageType.valueOf(storageType);
+        this.expirationDate = expirationDate;
+        this.countryOfOrigin = countryOfOrigin;
+    }
+
+    public Ingredient(int productId, String name, String description, String brand, float price, Date manufacturingDate, String storageType, Date expirationDate, String countryOfOrigin) {
+        super(productId, name, description, brand, price, manufacturingDate);
         this.storageType = StorageType.valueOf(storageType);
         this.expirationDate = expirationDate;
         this.countryOfOrigin = countryOfOrigin;

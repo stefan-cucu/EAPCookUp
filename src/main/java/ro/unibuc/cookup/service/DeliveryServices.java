@@ -23,7 +23,10 @@ public class DeliveryServices {
             throw new IllegalArgumentException("Arguments cannot be null");
         }
         HashMap<Product, Integer> products = new HashMap<Product, Integer>();
+        float totalPrice = 0, totalProfit = 0;
         for(Purchasable purchasable : purchases.keySet()){
+            totalPrice += purchasable.getPrice();
+            totalProfit += purchasable.getProfit();
             if(purchasable instanceof Product){
                 products.put((Product) purchasable, purchases.get(purchasable));
             }
@@ -43,7 +46,7 @@ public class DeliveryServices {
         if(supermarket == null){
             throw new IllegalArgumentException("No supermarket found with the given products");
         }
-        deliveryRepository.add(new Delivery(user, courier, date, "IN_PROGRESS", products, supermarket));
+        deliveryRepository.add(new Delivery(user, courier, date, "IN_PROGRESS", products, supermarket, totalPrice, totalProfit));
     }
 
     public void addSupermarket(String name, String address, HashMap<Product, Integer> products){
@@ -93,6 +96,24 @@ public class DeliveryServices {
             throw new IllegalArgumentException("Argument cannot be null");
         }
         supermarketRepository.delete(supermarket);
+    }
+
+    public float getTotalProfit() {
+        float profit = 0;
+        for(Delivery delivery : deliveryRepository.getAll()) {
+            if(delivery.getDeliveryStatus() == Delivery.DeliveryStatus.DELIVERED)
+                profit += delivery.getTotalProfit();
+        }
+        return profit;
+    }
+
+    public float getTotalPrice() {
+        float price = 0;
+        for(Delivery delivery : deliveryRepository.getAll()) {
+            if (delivery.getDeliveryStatus() == Delivery.DeliveryStatus.DELIVERED)
+                price += delivery.getTotalPrice();
+        }
+        return price;
     }
 
     public Delivery getDelivery(int id){

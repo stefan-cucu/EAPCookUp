@@ -7,10 +7,10 @@ public class PaymentCard {
     private String number;
     private String name;
     private String expiryDate;
-    private String cvv;
+    private int cvv;
 
     // Constructor
-    public PaymentCard(String number, String name, String expiryDate, String cvv) {
+    public PaymentCard(String number, String name, String expiryDate, int cvv) {
         this.number = number;
         this.name = name;
         this.expiryDate = expiryDate;
@@ -42,11 +42,11 @@ public class PaymentCard {
         this.expiryDate = expiryDate;
     }
 
-    public String getCvv() {
+    public int getCvv() {
         return cvv;
     }
 
-    public void setCvv(String cvv) {
+    public void setCvv(int cvv) {
         this.cvv = cvv;
     }
 
@@ -56,7 +56,7 @@ public class PaymentCard {
         if (this == o) return true;
         if (!(o instanceof PaymentCard)) return false;
         PaymentCard that = (PaymentCard) o;
-        return getNumber().equals(that.getNumber()) && getName().equals(that.getName()) && getExpiryDate().equals(that.getExpiryDate()) && getCvv().equals(that.getCvv());
+        return getNumber().equals(that.getNumber()) && getName().equals(that.getName()) && getExpiryDate().equals(that.getExpiryDate()) && (getCvv() == that.getCvv());
     }
 
     @Override
